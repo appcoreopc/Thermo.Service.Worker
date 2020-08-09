@@ -1,9 +1,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 using Service.MessageBusServiceProvider.AzBlob;
 using Service.MessageBusServiceProvider.CheckPointing;
-using Service.MessageBusServiceProvider.Queue;
 using Service.ThermoProcessWorker.AppBusinessLogic;
 
 namespace Service.ThermoProcessWorker
@@ -22,12 +22,23 @@ namespace Service.ThermoProcessWorker
             .UseWindowsService()
             .ConfigureServices((hostContext, services) =>
             {
-                services.AddLogging();
+                services.AddLogging();             
                 services.AddSingleton<IBlobClientProvider, BlobClientProvider>();
                 services.AddSingleton<IChannelMessageSender, ChannelMessageSender>();
                 services.AddSingleton<ICheckPointLogger, CheckPointLogger>();
                 services.AddSingleton<IThermoDataLogic, ThermoDataLogic>();
                 services.AddHostedService<BackgroundRestWorkerService>();
-            });
+            }).ConfigureLogging(
+            loggingBuilder =>
+            {
+                var configuration = new ConfigurationBuilder()
+                   .AddJsonFile("appsettings.json")
+                   .Build();
+                var logger = new LoggerConfiguration()
+                    .ReadFrom.Configuration(configuration)
+                    .CreateLogger();
+                loggingBuilder.AddSerilog(logger, dispose: true);
+        }
+      );
     }
 }
