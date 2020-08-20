@@ -1,4 +1,4 @@
-﻿namespace AzCloudApp.MessageProcessor.Core.EmailSummary
+﻿namespace AzCloudApp.MessageProcessor.Core.EmailSummary.Model
 {
     public class EmailSummaryConfiguration
     {
@@ -13,6 +13,5 @@
         public double MaxTemperature { get; set; }
 
         public string TargetDate { get; set; }
-
     }
 }

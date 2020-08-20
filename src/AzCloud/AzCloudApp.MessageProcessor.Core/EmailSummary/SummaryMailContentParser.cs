@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using Service.ThermoDataModel.Models;
 using System;
 using System.Linq;
+using AzCloudApp.MessageProcessor.Core.EmailSummary.Model;
 
 namespace AzCloudApp.MessageProcessor.Core.EmailSummary
 {
@@ -21,7 +22,7 @@ namespace AzCloudApp.MessageProcessor.Core.EmailSummary
             var mailData = new MailContentData();
             mailData.MailInfo = new MailInfo();
 
-            if (param.Recipients == null && !param.Recipients.Any())
+            if (param.Recipients == null || !param.Recipients.Any())
                 throw new ArgumentNullException(RecipientNullErrorMessage);
 
             mailData.MailInfo.Recipients = param.Recipients;
@@ -38,10 +39,5 @@ namespace AzCloudApp.MessageProcessor.Core.EmailSummary
             
             return replacedContent;
         }
-    }
-
-    public interface ISummaryMailContentParser
-    {
-        MailContentData CreateSummaryEmailAlertMessage(ParseEmailParam param, ILogger logger);
     }
 }

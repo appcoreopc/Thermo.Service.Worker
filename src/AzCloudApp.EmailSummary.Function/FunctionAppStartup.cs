@@ -6,6 +6,7 @@ using AzCloudApp.MessageProcessor.Core.DataProcessor;
 using AzCloudApp.MessageProcessor.Core.Thermo.DataStore;
 using Service.MessageBusServiceProvider.Queue;
 using AzCloudApp.MessageProcessor.Core.EmailSummary;
+using AzCloudApp.MessageProcessor.Core.EmailSummary.Model;
 
 [assembly: FunctionsStartup(typeof(AzCloudApp.MessageProcessor.Function.FunctionAppStartup))]
 namespace AzCloudApp.MessageProcessor.Function
