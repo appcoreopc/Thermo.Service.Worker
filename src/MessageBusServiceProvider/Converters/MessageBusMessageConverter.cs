@@ -3,7 +3,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace Service.MessageBusServiceProvider.Converters
 {
-    public class MessageConverter
+    public class MessageBusMessageConverter
     {
         public static string SerializeCamelCase(object sourceObject)
         {

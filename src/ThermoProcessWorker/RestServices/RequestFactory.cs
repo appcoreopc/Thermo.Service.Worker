@@ -19,7 +19,7 @@ namespace Service.ThermoProcessWorker.RestServices
         {
             var request = new RestRequest(url);
             request.Method = Method.POST;
-            string src = MessageConverter.SerializeCamelCase(source);
+            string src = MessageBusMessageConverter.SerializeCamelCase(source);
             request.AddJsonBody(src);
             return request;
         }

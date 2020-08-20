@@ -88,7 +88,7 @@ namespace Service.ThermoProcessWorker.AppBusinessLogic
 
                 }
 
-                var messgeInstance = MessageConverter.Serialize(attendanceItem);
+                var messgeInstance = MessageBusMessageConverter.Serialize(attendanceItem);
                 await _messageSender.SendMessagesAsync(messgeInstance);
             }
 
@@ -106,7 +106,7 @@ namespace Service.ThermoProcessWorker.AppBusinessLogic
                 Timestamp = DateTime.UtcNow
             };
 
-            var messgeInstance = MessageConverter.Serialize(heartbeatMessage);
+            var messgeInstance = MessageBusMessageConverter.Serialize(heartbeatMessage);
             _messageSender.SendMessagesAsync(messgeInstance);
             this._logger.LogInformation($"Sending HeartBeat message {DateTime.Now}");
             return Task.CompletedTask;

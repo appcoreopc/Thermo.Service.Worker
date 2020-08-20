@@ -49,7 +49,7 @@ namespace AzCloudApp.MessageProcessor.Core.EmailNotifier
 
                     if (mailData != null)
                     {
-                        var messgeInstance = MessageConverter.Serialize(mailData);
+                        var messgeInstance = MessageBusMessageConverter.Serialize(mailData);
                         await _messageSender.SendMessagesAsync(messgeInstance);
 
                         logger.LogInformation("MailData message sent to queue.");

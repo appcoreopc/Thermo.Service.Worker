@@ -21,7 +21,7 @@ namespace Service.MessageBusServiceProvider.CheckPointing
 
             using (StreamWriter writetext = new StreamWriter(fileName, false))
             {
-                writetext.WriteLine(MessageConverter.Serialize(checkPointConfiguration));
+                writetext.WriteLine(MessageBusMessageConverter.Serialize(checkPointConfiguration));
             }
             return Task.FromResult(false);
         }
@@ -45,7 +45,7 @@ namespace Service.MessageBusServiceProvider.CheckPointing
                 });
             }
 
-            var checkpointing = MessageConverter.DeSerialize<CheckPointConfiguration>(isourceContent);
+            var checkpointing = MessageBusMessageConverter.DeSerialize<CheckPointConfiguration>(isourceContent);
 
             if (checkpointing != null)
                 _logger.LogInformation($"Reading checkpoint to {fileName}, Last sequence count : {checkpointing.LastSequence}");

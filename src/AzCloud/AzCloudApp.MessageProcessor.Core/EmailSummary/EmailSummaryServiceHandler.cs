@@ -56,7 +56,7 @@ namespace AzCloudApp.MessageProcessor.Core.EmailSummary
 
                     if (mailData != null)
                     {
-                        var messageInstance = MessageConverter.Serialize(mailData);
+                        var messageInstance = MessageBusMessageConverter.Serialize(mailData);
                         await _messageSender.SendMessagesAsync(messageInstance);
 
                         logger.LogInformation($"Sent content  {messageInstance} data to notification queue.");

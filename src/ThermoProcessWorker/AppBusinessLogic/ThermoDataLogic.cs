@@ -112,7 +112,7 @@ namespace Service.ThermoProcessWorker.AppBusinessLogic
             var result = await thermoDataRequester.
                 GetAttendanceRecordAsync<AttendanceResponse>(attendanceRequest);
 
-            var attendanceRecResult = MessageConverter.DeSerializeCamelCase<AttendanceResponse>(result.Content);
+            var attendanceRecResult = MessageBusMessageConverter.DeSerializeCamelCase<AttendanceResponse>(result.Content);
 
             if (attendanceRecResult != null && attendanceRecResult.Command == 523)
             {
