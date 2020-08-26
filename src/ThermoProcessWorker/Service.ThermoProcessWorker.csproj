@@ -10,6 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MessageBusServiceProvider\Service.MessageBusServiceProvider.csproj" />
+    <ProjectReference Include="..\Service.Utility\Service.Utility.csproj" />
     <ProjectReference Include="..\ThermoDataModel\Service.ThermoDataModel.csproj" />
   </ItemGroup>
 </Project>

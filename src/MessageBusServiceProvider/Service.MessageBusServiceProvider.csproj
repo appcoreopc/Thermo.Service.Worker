@@ -10,6 +10,7 @@
 	<PackageReference Include="System.Drawing.Common" Version="4.7.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Service.Utility\Service.Utility.csproj" />
     <ProjectReference Include="..\ThermoDataModel\Service.ThermoDataModel.csproj" />
   </ItemGroup>
 </Project>

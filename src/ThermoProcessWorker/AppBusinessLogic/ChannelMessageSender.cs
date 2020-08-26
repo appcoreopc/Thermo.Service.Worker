@@ -70,8 +70,9 @@ namespace Service.ThermoProcessWorker.AppBusinessLogic
                 if (!string.IsNullOrWhiteSpace(attendanceItem.Img))
                 {
                     // All these can be done async 
+                    var targetFileName = $"{attendanceItem.DeviceId}-{attendanceItem.Id}{DefaultImageJpg}";
 
-                    var targetImagePath = $"{_blobConfiguration.ImageStorePath}{Path.DirectorySeparatorChar}{attendanceItem.Id}{DefaultImageJpg}";
+                    var targetImagePath = $"{_blobConfiguration.ImageStorePath}{Path.DirectorySeparatorChar}{targetFileName}";
 
                     // Save Images 
                     ImageConverter.SaveByteArrayAsImage(targetImagePath, ImageConverter.ExractBase64(attendanceItem.Img));
@@ -79,7 +80,7 @@ namespace Service.ThermoProcessWorker.AppBusinessLogic
                     // Push image to Azure // 
                     await this._blobClientProvider.PushImageToStoreAsync(_blobConfiguration.ContainerName, targetImagePath);
 
-                    attendanceItem.Img = $"{_blobConfiguration.StorageEndpoint}/{attendanceItem.Id}{DefaultImageJpg}";
+                    attendanceItem.Img = $"{_blobConfiguration.StorageEndpoint}/{targetFileName}";
 
                     this._logger.LogInformation($"Saving images: {attendanceItem.Id} to {targetImagePath} to cloud path : {_blobConfiguration.StorageEndpoint}/{_blobConfiguration.ContainerName} : {DateTime.Now}");
 

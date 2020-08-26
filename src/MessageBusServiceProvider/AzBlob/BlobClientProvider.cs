@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Service.MessageBusServiceProvider.IOUtil;
 using Service.ThermoDataModel.Configuration;
+using Service.Utility;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace Service.MessageBusServiceProvider.AzBlob
 
         public async Task<string> PushImageToStoreAsync(string targetContainer, string path)
         {
-            var storageAccount = CloudStorageAccount.Parse(_blobConfiguration.ConnectionString);
+            var storageAccount = CloudStorageAccount.Parse(Encrypt.Decrypt(_blobConfiguration.ConnectionString));
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = blobClient.GetContainerReference(targetContainer);
 

@@ -47,7 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Thermo.Web.WebApi.Model", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzCloudApp.MessageProcessor.Core.Thermo.DataServiceProvider", "AzCloudApp.MessageProcessor.Core.Thermo.DataServiceProvider\AzCloudApp.MessageProcessor.Core.Thermo.DataServiceProvider.csproj", "{DFE665E7-70C5-4DEE-AAF0-C19B0A38D042}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzCloudApp.EmailSummary.Function", "AzCloudApp.EmailSummary.Function\AzCloudApp.EmailSummary.Function.csproj", "{3827324B-8266-422F-BC9F-3FD13802C6A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzCloudApp.EmailSummary.Function", "AzCloudApp.EmailSummary.Function\AzCloudApp.EmailSummary.Function.csproj", "{3827324B-8266-422F-BC9F-3FD13802C6A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Utility", "Service.Utility\Service.Utility.csproj", "{3E287448-CC03-49E8-9B91-295A1403A2D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -275,6 +277,18 @@ Global
 		{3827324B-8266-422F-BC9F-3FD13802C6A2}.Release|x64.Build.0 = Release|Any CPU
 		{3827324B-8266-422F-BC9F-3FD13802C6A2}.Release|x86.ActiveCfg = Release|Any CPU
 		{3827324B-8266-422F-BC9F-3FD13802C6A2}.Release|x86.Build.0 = Release|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Debug|x64.Build.0 = Debug|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Debug|x86.Build.0 = Debug|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Release|x64.ActiveCfg = Release|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Release|x64.Build.0 = Release|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Release|x86.ActiveCfg = Release|Any CPU
+		{3E287448-CC03-49E8-9B91-295A1403A2D9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

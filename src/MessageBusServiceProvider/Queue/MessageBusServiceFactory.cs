@@ -1,5 +1,6 @@
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Logging;
+using Service.Utility;
 
 namespace Service.MessageBusServiceProvider.Queue
 {
@@ -7,7 +8,7 @@ namespace Service.MessageBusServiceProvider.Queue
     {
         public static IQueueClient CreateQueueClient(ServiceBusConfiguration option)
         {
-            return new QueueClient(option.ServiceBusConnection, option.QueueName);
+            return new QueueClient(Encrypt.Decrypt(option.ServiceBusConnection), option.QueueName);
         }
 
         public static IQueueMessageSender CreateServiceBusMessageSender(ServiceBusConfiguration serviceBusOption, ILogger logger)
