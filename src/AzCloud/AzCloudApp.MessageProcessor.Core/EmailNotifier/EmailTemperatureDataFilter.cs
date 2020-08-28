@@ -34,7 +34,7 @@ namespace AzCloudApp.MessageProcessor.Core.EmailNotifier
 
                 logger.LogInformation($"Running TemperatureDataFilter sbconnection : {_notificationServiceBusConfiguration.ServiceBusConnection}, queue : {_notificationServiceBusConfiguration.QueueName} and temperature max : {_temperatureFilterConfiguration.Max} ");
 
-                if (attendanceRecord.BodyTemperature > _temperatureFilterConfiguration.Max
+                if (attendanceRecord.BodyTemperature >= _temperatureFilterConfiguration.Max
                     || attendanceRecord.BodyTemperature < _temperatureFilterConfiguration.Min)
                 {
                     _messageSender = MessageBusServiceFactory.CreateServiceBusMessageSender(_notificationServiceBusConfiguration, logger);

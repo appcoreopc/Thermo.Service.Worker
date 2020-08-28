@@ -39,7 +39,8 @@ namespace AzCloudApp.MessageProcessor.Core.DataProcessor
                           join ar in _thermoDataContext.AttendanceRecord on cd.DeviceId equals
                           ar.DeviceId
                           where ar.TimeStamp >= param.StartDate && ar.TimeStamp <= param.EndDate
-                          && ar.BodyTemperature > param.TemperatureMax
+                          && (ar.BodyTemperature >= param.TemperatureMax || 
+                          ar.BodyTemperature < param.TemperatureMin)
                           group cd by cd.CompanyId into g
                           select new AbnornormalScanResult
                           {

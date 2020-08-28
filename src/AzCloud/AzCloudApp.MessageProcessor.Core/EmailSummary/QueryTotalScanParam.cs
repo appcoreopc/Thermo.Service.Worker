@@ -9,5 +9,8 @@ namespace AzCloudApp.MessageProcessor.Core.DataProcessor
         public DateTime EndDate { get; set; }
 
         public double TemperatureMax { get; set; }
+
+        public double TemperatureMin { get; set; }
+
     }
 }

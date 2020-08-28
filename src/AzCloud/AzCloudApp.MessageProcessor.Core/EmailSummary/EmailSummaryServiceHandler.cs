@@ -75,7 +75,7 @@ namespace AzCloudApp.MessageProcessor.Core.EmailSummary
 
         private IEnumerable<CompanyTotalScanResult> ComputeTotalSummaryScans(QueryTotalScanParam queryParam, ILogger logger)
         { 
-            logger.LogInformation($"ComputeTotalSummaryScans routine. Start date : {queryParam.StartDate}, End Date: { queryParam.EndDate }, Max: { queryParam.TemperatureMax }");
+            logger.LogInformation($"ComputeTotalSummaryScans routine. Start date : {queryParam.StartDate}, End Date: { queryParam.EndDate }, Max: { queryParam.TemperatureMax }, min: {queryParam.TemperatureMin}");
 
             var totalScan = GetTotalScanRecord(queryParam)?.ToList();
           
@@ -103,7 +103,7 @@ namespace AzCloudApp.MessageProcessor.Core.EmailSummary
           
             if (!DateTime.TryParse(_emailSummaryConfiguration.TargetDate, out endDate))
             {
-                endDate = DateTime.Now;
+                endDate = DateTime.Today;
             }
 
             var startDate = endDate.AddDays(-1);
@@ -113,6 +113,7 @@ namespace AzCloudApp.MessageProcessor.Core.EmailSummary
                 StartDate = startDate,
                 EndDate = endDate,
                 TemperatureMax = _emailSummaryConfiguration.MaxTemperature,
+                TemperatureMin = _emailSummaryConfiguration.MinTemperature
             };
         }
 

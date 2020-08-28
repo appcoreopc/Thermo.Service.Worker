@@ -13,5 +13,8 @@
         public double MaxTemperature { get; set; }
 
         public string TargetDate { get; set; }
+
+        public double MinTemperature { get; set; }
+
     }
 }
