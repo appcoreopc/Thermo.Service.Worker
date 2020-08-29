@@ -37,7 +37,7 @@ namespace AzCloudApp.MessageProcessor.Core.EmailNotifier
                 if (attendanceRecord.BodyTemperature >= _temperatureFilterConfiguration.Max
                     || attendanceRecord.BodyTemperature < _temperatureFilterConfiguration.Min)
                 {
-                    _messageSender = MessageBusServiceFactory.CreateServiceBusMessageSender(_notificationServiceBusConfiguration, logger);
+                    _messageSender = MessageBusServiceFactory.CreateServiceBusMessageSenderSecured(_notificationServiceBusConfiguration, logger);
 
                     var mailParam = new EmailTemperatureHitParameter(attendanceRecord.DeviceId, _temperatureFilterConfiguration.EmailTemplateMaxTemperatureHit);
                     

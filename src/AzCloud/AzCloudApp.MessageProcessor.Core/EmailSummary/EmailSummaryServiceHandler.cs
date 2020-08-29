@@ -31,28 +31,30 @@ namespace AzCloudApp.MessageProcessor.Core.EmailSummary
 
         public async Task ProcessMessage(ILogger logger)
         {
-            logger.LogInformation($"NotificationSummaryProcessor : Getting summary email list of notifications." +
-                $"Connecion:{_notificationServiceBusConfiguration.ServiceBusConnection} and queuename: {_notificationServiceBusConfiguration.QueueName}");
-
+           
             var queryParameter = CreateParam();
             var totalScan = ComputeTotalSummaryScans(queryParameter, logger);
 
+            logger.LogInformation($"NotificationSummaryProcessor : Getting summary email list of notifications." +
+               $"Connecion:{_notificationServiceBusConfiguration.ServiceBusConnection} and queuename: {_notificationServiceBusConfiguration.QueueName}" +
+               $" total scan  {totalScan.Count()}");
+
             if (totalScan != null)
             {
-                logger.LogInformation($"View count : {totalScan?.Count()}");
-
-                var _messageSender = MessageBusServiceFactory.CreateServiceBusMessageSender(_notificationServiceBusConfiguration, logger);
+                var _messageSender = MessageBusServiceFactory.CreateServiceBusMessageSenderSecured(_notificationServiceBusConfiguration, logger);
 
                 foreach (var item in totalScan)
                 {
-
-                    logger.LogInformation($"Total Amount daily scan - {item.TotalScans}.");
-
                     var mailParam = new ParseEmailParam(item.CompanyId, item.TotalScans);
                     mailParam.Recipients = _dataProcessor.GetRecipientsByCompanyId(item.CompanyId);
+                    logger.LogInformation($"Recipient : {mailParam.Recipients.Count()} {DateTime.Now}");
+
                     mailParam.TotalAbnormalDetected = item.TotalAbnormalScan;
 
                     var mailData = _summaryMailContentParser.CreateSummaryEmailAlertMessage(mailParam, logger);
+
+                    logger.LogInformation($"maildata {mailData.MailInfo.SenderName}");
+
 
                     if (mailData != null)
                     {
@@ -82,7 +84,7 @@ namespace AzCloudApp.MessageProcessor.Core.EmailSummary
             if (totalScan != null)
             {
                 var totalAbnormalScan = GetAbnormalScanRecord(queryParam);
-                logger.LogInformation($"Abnormal : {totalAbnormalScan?.Count()}");
+                logger.LogInformation($"Normal scan {totalScan.Count()}, Abnormal : {totalAbnormalScan?.Count()}");
 
                 for (int i = 0; i < totalScan.Count(); i++)
                 {

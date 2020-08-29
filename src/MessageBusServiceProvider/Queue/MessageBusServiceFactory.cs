@@ -17,5 +17,17 @@ namespace Service.MessageBusServiceProvider.Queue
             var client = CreateQueueClient(serviceBusOption);
             return new QueueMessageSender(client, logger);
         }
+
+        public static IQueueClient CreateQueueClientSecured(ServiceBusConfiguration option)
+        {
+            return new QueueClient(option.ServiceBusConnection, option.QueueName);
+        }
+
+        public static IQueueMessageSender CreateServiceBusMessageSenderSecured(ServiceBusConfiguration serviceBusOption, ILogger logger)
+        {
+            logger.LogInformation($"CreateServiceBusMessageSender. {serviceBusOption.QueueName}, {serviceBusOption.ServiceBusConnection}");
+            var client = CreateQueueClientSecured(serviceBusOption);
+            return new QueueMessageSender(client, logger);
+        }
     }
 }
